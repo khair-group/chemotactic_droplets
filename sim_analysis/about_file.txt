@@ -1,0 +1,20 @@
+Codes for analyzing simulation data and calculating the number of neighbors and the motility function.
+
+The scripts are structured largely similar to that in the "exp_analysis" folder.
+
+The folder "eq_dia" contains simulation results of systems with equally sized BrOct and EFB disks.
+
+(1) The driver routine "sims_mu_eq_dia.m" calls "calc_save_contact_dyn_stats_ens_avg_efb_based" and calculates the ensemble averaged value of the
+    maximum number of BrOct in contact with the EFB droplets over the time series.
+
+    "calc_save_contact_dyn_stats_ens_avg_efb_based" in turn calls "ret_contact_dynamics_efb_based" and "dist_calc_bidisp_mix_sim_data" for 
+    performing the necessary calculations.
+
+(2) The driver routine "tot_pos_eq.m" calculates the motility function Q(t) by invoking "multi_traj_hvsd" and "calc_qt_mean_std_err". Note that 
+    "multi_traj_hvsd" makes use of "single_traj_hvsd". 
+
+Additional descriptions of functions are provided as comments in the respective scripts.
+
+ 
+
+
