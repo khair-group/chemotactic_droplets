@@ -1,0 +1,32 @@
+
+The data obtained from the image tracking algorithm is stored in either Excel or csv format. The data is stored in 
+a 4-column format, with (x pixel, y pixel, frame number, drop number) stored in columns 1, 2, 3, 4, respectively.
+
+In broct_65micron_dia_efb_110micron_dia --> N_BrOct_by_N_EFB_20, there are two Excel files, one each for BrOct and EFB data series. 
+Also present is "n_drops_info.dat", which contains the number of BrOct and EFB droplets in the dish at the beginning of the 
+video acquisition process.
+
+
+(1) Running “driver_parse_input.m” takes in the input Excel sheets and parses the information so that the droplet positions 
+    at each frame is available. This output is stored as a “.mat” variable. This driver routine calls “parse_frame_inp.m” which 
+    performs the actual  parsing of input. 
+
+(2) The ".mat" files generated from step 1 are named as "broct_frames_cell_196_392.mat" and "efb_frames_cell_196_392.mat".
+    These files are required for neighbor analysis, as described in the step below.  
+
+(3) The routine "mu_efb_s0_5.m" calculates the time-series of the number of BrOct droplets in contact with EFB droplets, and saves
+    the output as "efb_based_neighb_info.mat". In this ".mat" file, there is a time-series corresponding to each EFB droplet.
+
+(4) The routine "ens_av_mu_s0_5.m" averages over the individual time-series stored in "efb_based_neighb_info.mat" and returns
+    "mu_{EFB}^{BrOct}". A time cutoff is specified in the code to mitigate the effects of transient fluctuations on the neighbor
+    counting process. Default value of this time cut-off is 20 frames.
+
+ASIDE: Steps (3) and (4) make use of the functions: "find_smallest_num_drops", "ret_efb_contact_dynamics", 
+       "dist_calc_bidisp_mix". Descriptions of these functions are provided as comments within the scripts. 
+
+(5) The driver routine "tot_s0_5.m" calculates the motility function Q(t). This routine makes calls to the functions: 
+    "parse_drop_based_inp", "all_process_qt_inp", "multi_traj_hvsd", "single_traj_hvsd", "calc_qt_mean_std_err".
+    Descriptions of these functions are provided as comments within the scripts.   
+
+
+
