@@ -1,0 +1,23 @@
+This folder contains MATLAB scripts to simulate a collection of chemotactic disks moving in two dimensions.
+
+(1) "driver_routine_doub_dia.m" is the driver routine. The radius of BrOct (rad_BO) considered in this code is 0.4 units, while that of EFB (rad_EFB) is 0.2 units. 
+    The initial positions and orientations of al disks are set through the function "init_pos_ori".
+    This routine calls "function_for_sim" which runs the actual simulation.
+
+(2) "function_for_sim" calls the following functions: 
+
+    + "alt_min_img_conv" implements the minimum image convention and calculates the interparticle distances.
+
+    + "pick_disks_in_contact_size_contrast" identifies which disks are within a cut-off distance of each other, and 
+      implements steric repulsion by setting them apart using the Heyes-Melrose algorithm so that they are just in contact.
+      Calls "modular_vhs_gen" to calculate the repulsion velocity which is imparted to each interpenetrating disk pair.
+
+    + "calc_chemotac_vel" calculates the chemotactic velocity between each disk pair, by calling "ret_chemo_vel_ij".
+
+    + "ret_theta_gauss_dist" implements rotational diffusion of the orientation of the disk. For the current simulations, 
+       this is disabled.
+
+
+Additional descriptions of the various functions are provided as comments within the scripts.
+
+      
