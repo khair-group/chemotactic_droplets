@@ -12,8 +12,8 @@ trim_len=1; % which time-frame to start reading data from. Setting it equal
 contact_dist=((broct_dia+efb_dia)/2)/dist_scale_fac;
 
 %%%% specification based on BrOct or EFB droplets
-broct_baseFileName = 'new_broct_frames_cell_196_392.mat';
-efb_baseFileName = 'new_efb_frames_cell_196_392.mat';
+broct_baseFileName = 'broct_frames_cell_196_392.mat';
+efb_baseFileName = 'efb_frames_cell_196_392.mat';
 ndrop_baseFileName = 'n_drops_info.dat';
 spec_prefix='efb_based';
 nlist_baseFileName='efb_based_neighb_info.mat';
